@@ -46,6 +46,46 @@
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
+.quote-phone {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #c9ebd3;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.35rem 1rem;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.quote-phone:focus-within {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #febf0e;
+}
+
+.quote-phone-invalid {
+  border-color: #f87171;
+}
+
+.quote-phone-invalid:focus-within {
+  box-shadow: 0 0 0 2px #fca5a5;
+}
+
+.quote-phone .PhoneInput {
+  width: 100%;
+}
+
+.quote-phone .PhoneInputInput {
+  border: 0;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  color: #1a1c1e;
+}
+
+.quote-phone .PhoneInputCountry {
+  margin-right: 0.75rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
