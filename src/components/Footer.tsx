@@ -1,111 +1,126 @@
+const quickLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#services', label: 'Services' },
+  { href: '#locate', label: 'Locate Us' },
+  { href: '#about', label: 'About Us' },
+]
+
+const headingClass = 'mb-5 font-semibold text-white'
+const linkClass = 'transition-colors hover:text-white'
+const muted = 'text-sm leading-relaxed text-white/80'
+
 export function Footer() {
+  const openComplaint = () => {
+    window.dispatchEvent(
+      new CustomEvent('quote:request-type', { detail: 'complaint' }),
+    )
+  }
+
   return (
-    <footer className="w-full border-t-4 border-brand-gold-300 bg-brand-green-950 py-14 font-body-md text-body-md text-white md:py-section-padding">
-      <div className="mx-auto grid max-w-container-max grid-cols-1 gap-gutter px-margin-mobile sm:grid-cols-2 md:grid-cols-4 md:px-margin-desktop">
-        <div className="flex flex-col gap-4 sm:col-span-2 md:col-span-1">
-          <span className="font-display-lg text-headline-md font-bold text-secondary-fixed dark:text-secondary">
-            PG Global Logistics
-          </span>
-          <p className="text-surface-variant dark:text-on-surface-variant text-sm mt-4">
-            Delivering precision worldwide. Your trusted partner for seamless
-            international courier and logistics solutions.
+    <footer className="bg-brand-green-950 text-white">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="flex flex-col gap-6 border-b border-white/15 py-10 sm:flex-row sm:items-center sm:justify-between">
+          <a href="#home" className="inline-flex shrink-0">
+            <img
+              alt="PGGL — passing globally"
+              className="h-14 w-auto mix-blend-screen md:h-16"
+              src="/logo.png"
+            />
+          </a>
+          <div className="flex flex-col gap-1 text-sm text-white sm:items-end">
+            <a className={linkClass} href="tel:+94117207236">
+              +94 117 207 236
+            </a>
+            <a className={linkClass} href="mailto:info@pglanka.com">
+              info@pglanka.com
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-10 border-b border-white/15 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <h3 className={headingClass}>About us</h3>
+            <p className={muted}>
+              We Power Green, an international courier service provider since
+              2010, offer door-to-door courier solutions with world-renowned
+              couriers such as{' '}
+              <span className="font-semibold text-white">
+                DHL, Aramex, UPS and SkyNet.
+              </span>
+            </p>
+          </div>
+
+          <div>
+            <h3 className={headingClass}>Quick links</h3>
+            <ul className={`flex flex-col gap-2 ${muted}`}>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a className={linkClass} href={link.href}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className={headingClass}>Address</h3>
+            <div className={`flex flex-col gap-5 ${muted}`}>
+              <p>
+                Wellawatta
+                <br />
+                49, ST Lawrence Road,
+                <br />
+                Colombo - 06, Sri Lanka.
+              </p>
+              <p>
+                Chavakachcheri
+                <br />
+                23, Kandy Road,
+                <br />
+                Chavakachcheri, Sri Lanka.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 className={headingClass}>Contact</h3>
+            <ul className={`flex flex-col gap-2 ${muted}`}>
+              <li>
+                <a className={linkClass} href="tel:+94117207236">
+                  Wellawatta · +94 117 207 236
+                </a>
+              </li>
+              <li>
+                <a className={linkClass} href="tel:+94217200616">
+                  Chavakachcheri · 021 720 0616
+                </a>
+              </li>
+              <li>
+                <a className={linkClass} href="#track">
+                  Track Order
+                </a>
+              </li>
+              <li>
+                <a className={linkClass} href="#quote" onClick={openComplaint}>
+                  Lodge Complaint
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 py-6 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            Copyright © 2026 All Rights Reserved | Web Design By{' '}
+            <a
+              href="mailto:thishanthan03@gmail.com?cc=ahamedrizlan2002@gmail.com,geeviniyvasu@gmail.com&subject=New%20Project%20Inquiry&body=Hello%20Assura%20Solutions,"
+              className="text-white underline underline-offset-2 hover:text-brand-gold-300"
+            >
+              Assura Solutions
+            </a>
           </p>
         </div>
-
-        <div>
-          <h4 className="font-label-bold text-white dark:text-primary mb-4 uppercase tracking-wider text-sm">
-            Company
-          </h4>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#about"
-              >
-                About Us
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#partners"
-              >
-                Global Network
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#quote"
-              >
-                Careers
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-label-bold text-white dark:text-primary mb-4 uppercase tracking-wider text-sm">
-            Legal
-          </h4>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#"
-              >
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#"
-              >
-                Terms of Service
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                href="#"
-              >
-                Sitemap
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-label-bold text-white dark:text-primary mb-4 uppercase tracking-wider text-sm">
-            Contact
-          </h4>
-          <ul className="flex flex-col gap-3">
-            <li className="flex items-start gap-2 text-surface-variant dark:text-on-surface-variant text-sm">
-              <span className="material-symbols-outlined text-[18px] text-secondary-fixed">
-                location_on
-              </span>
-              <span>
-                123 Logistics Blvd, Suite 400
-                <br />
-                Global Hub City, 90210
-              </span>
-            </li>
-            <li className="flex items-center gap-2 text-surface-variant dark:text-on-surface-variant text-sm">
-              <span className="material-symbols-outlined text-[18px] text-secondary-fixed">
-                call
-              </span>
-              <span>+1 (800) 555-0199</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="mx-auto mt-12 max-w-container-max border-t border-outline/20 px-margin-mobile pt-8 text-center md:mt-section-padding md:px-margin-desktop">
-        <p className="text-surface-variant/70 dark:text-on-surface-variant/70 text-sm">
-          © 2024 PG Global Logistics. All rights reserved. Delivering precision
-          worldwide.
-        </p>
       </div>
     </footer>
   )

@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 
-const LOGO_SRC =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuAQQupM3YIDoUeL9z8p0UkpJUja1WXkZYCr2jCuRH156qoMTxIiNMFUZcUSMvcuGCuOgeoDmYmFwEi98Hjcpsf-QFcacXcYUPT2__1mZo4YLlWpX74oehAHdwzO6waQ7peJ7xynsF7_ovogmPBVGTIU42XqNZJXqwdKsPfuY5YzDIqCYbDny35k-t_qZ2sfqUBVuFjN-Tmnj_v7KxD-AAP6DOPTJsSJAKm4Cf-Y3bhq06sGbkDkk5R5p4GItCm3nPyWIYE'
-
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#services', label: 'Services' },
@@ -73,11 +70,11 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-brand-green-950/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-container-max items-center justify-between gap-3 px-margin-mobile md:h-20 md:px-margin-desktop">
-        <a href="#home" className="flex shrink-0 items-center gap-2">
+        <a href="#home" className="flex shrink-0 items-center">
           <img
-            alt="PG Global Logistics Logo"
-            className="h-9 w-auto md:h-10"
-            src={LOGO_SRC}
+            alt="PGGL — passing globally"
+            className="h-12 w-auto mix-blend-screen md:h-14"
+            src="/logo.png"
           />
           <span className="hidden font-display-lg text-headline-md font-bold text-white lg:block">
             PG <span className="text-brand-gold-300">Global</span> Logistics

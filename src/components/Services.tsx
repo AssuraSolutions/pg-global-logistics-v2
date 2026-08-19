@@ -2,73 +2,68 @@ import { RevealOnScroll } from './RevealOnScroll'
 
 type Service = {
   title: string
-  description: string
-  icon: string
+  shortDescription: string
   image: string
-  alt: string
-  iconTone: string
   hoverBorder: string
 }
 
 const services: Service[] = [
   {
-    title: 'International Courier',
-    description:
-      'Fast, reliable global shipping for packages of all sizes. Door-to-door service across our extensive network.',
-    icon: 'flight_takeoff',
-    alt: 'International Courier',
-    iconTone: 'bg-brand-gold-300 text-brand-gold-700',
+    title: 'International Courier Services',
+    shortDescription:
+      'Deliver packages worldwide with trusted partners like DHL and Sky Net. Reliable, fast, and hassle-free courier solutions',
+    image: '/services/Service1.png',
     hoverBorder: 'hover:border-brand-gold-300',
-    image:
-      'https://lh3.googleusercontent.com/aida/AP1WRLtNnsHhmoxB3K9cm5mtCFxOfByrwF_XvkV4l0uDjrI6jMiomQZugZNSlAnUIUqyi2qcCOAjNg9cVTBlA9x-cf2tP2PDuGLfoI6Z01dGaXunZgn1SJWO4cxci5x7X0UtwiSsp-hrg-56asikt-yTZ4JiQ3Km95s6MxliAjUmQM42dUNS-Jzj2hOcqYEom12b9aYYz4PGTeQqPMqJ26UcPlA94e7fwL6CEqz4G08W9Ihi4Yf037U6QdL0ZLcY',
   },
   {
-    title: 'Document Delivery',
-    description:
-      'Secure and expedited handling for sensitive contracts, legal documents, and vital paperwork.',
-    icon: 'description',
-    alt: 'Document Delivery',
-    iconTone: 'bg-brand-green-600 text-white',
+    title: 'Island-wide Transportation Services',
+    shortDescription:
+      'Ensure smooth transportation of goods across Sri Lanka with secure and timely delivery.',
+    image: '/services/Service2.png',
     hoverBorder: 'hover:border-brand-green-500',
-    image:
-      'https://lh3.googleusercontent.com/aida/AP1WRLsZSWy3W4Wus9HsS55niTZg83nFKztao0FLIThvAwaImnT_03xVf2wHy-9_OVULgqy0LLTUqW22rHAU7ZsXX5cg5zKuxBGHd72TXbQ31gQf38ZQDeETMyj34pjMl1Vu_-wWOI5Sh4QJYUr9hkbNVE2jC_8wDpB_J-e_SvCyN53uSD1wsUMl3t8-kVPR8YDDAmKJqjETUQy9j-rBFdg0orf8qOyIHgVQNEFArCccuQuKgCBpASPVDgi3BWWZ',
   },
   {
-    title: 'Parcel Delivery',
-    description:
-      'Cost-effective routing for standard parcels with full end-to-end visibility and tracking.',
-    icon: 'inventory_2',
-    alt: 'Parcel Delivery',
-    iconTone: 'bg-brand-green-200 text-brand-green-800',
+    title: 'Vacuum Packing',
+    shortDescription:
+      'Protect your shipments with professional vacuum packing services, ideal for fragile or delicate items.',
+    image: '/services/Service3.png',
     hoverBorder: 'hover:border-brand-green-300',
-    image:
-      'https://lh3.googleusercontent.com/aida/AP1WRLuaVwbJjfzHw661eIW1uzk5hcnoaII6WkdpY25trOOeDjZDdj8owyhhE_9-5wuC1bw1-KHndseIR5jnzN4WpKIoxjnXNVWgjy9b27MN4RdxcR4EGS4ttWKmWOVeZvhDuZdmdO0QdzB_4nR894EeJc2AERaMeh5QSILIJU5DTXr5hHzToRcoGh5EyJ2j04Jz59Tw-eNNYSBj37se1cqXPlUMTtZxU8FkKpLmDMsovmtdT3Ap7LT8_Ib_pNY',
   },
   {
-    title: 'Express Delivery',
-    description:
-      'When time is critical. Priority routing and next-flight-out services for urgent shipments.',
-    icon: 'bolt',
-    alt: 'Express Delivery',
-    iconTone: 'bg-brand-green-900 text-brand-gold-300',
+    title: 'Wedding Logistics',
+    shortDescription:
+      'Specialized wedding transport services, ensuring smooth delivery of decorations and essentials.',
+    image: '/services/Service4.png',
     hoverBorder: 'hover:border-brand-green-800',
-    image:
-      'https://lh3.googleusercontent.com/aida/AP1WRLvftgEDcIrF2ycb13Z5vpE7QT5MSWP1PqiqXqoM_ERMIYcJww388mzCS5G0_h-7tWbKRlPa6LIJISfCzJmEPUUKbuz2f5MGOwVapvza6XvA49OV5ANN-_JQtI5ZRm4yDe7HXL1a8pDvFwOJmOw8bC2iYbrE3NPMCcBsfue52PYdh4lBybF8jdssEEl3Qa9QLqJECxZxlAcmru_Z-HieH8GI-5lTDPLHt_k1I0Oad4RFgSHro1pYnl2nhmU',
+  },
+  {
+    title: 'Export Solutions: Spices, Essential Oils & Garments',
+    shortDescription:
+      'Export premium Sri Lankan products, including spices like cinnamon and cardamom, high-quality essential oils, and various garments tailored to meet global standards.',
+    image: '/services/Service5.png',
+    hoverBorder: 'hover:border-brand-gold-300',
+  },
+  {
+    title: 'Air Cargo / Sea Cargo',
+    shortDescription:
+      'Trusted expertise in property development, offering end-to-end support for your projects.',
+    image: '/services/Service6.png',
+    hoverBorder: 'hover:border-brand-green-500',
   },
 ]
 
 export function Services() {
   return (
     <section
-      className="py-14 md:py-section-padding bg-gradient-to-b from-white via-brand-green-50 to-white"
+      className="bg-gradient-to-b from-white via-brand-green-50 to-white py-14 md:py-section-padding"
       id="services"
     >
-      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="text-center max-w-3xl mx-auto mb-stack-lg">
-          <span className="inline-block rounded-full bg-brand-green-100 px-4 py-1.5 font-label-bold text-xs uppercase tracking-[0.18em] text-brand-green-700 mb-4">
+      <RevealOnScroll className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="mx-auto mb-stack-lg max-w-3xl text-center">
+          <span className="mb-4 inline-block rounded-full bg-brand-green-100 px-4 py-1.5 font-label-bold text-xs uppercase tracking-[0.18em] text-brand-green-700">
             What we move
           </span>
-          <h2 className="font-headline-lg text-headline-lg text-brand-green-900 mb-4">
+          <h2 className="mb-4 font-headline-lg text-headline-lg text-brand-green-900">
             International courier services made simple
           </h2>
           <p className="font-body-lg text-on-surface-variant">
@@ -77,43 +72,27 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+        <div className="grid grid-cols-1 gap-gutter md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <div
               key={service.title}
-              className={`bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-2 border-transparent ${service.hoverBorder} flex flex-col h-full group`}
+              className={`group flex h-full flex-col overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${service.hoverBorder}`}
             >
-              <div className="h-48 w-full overflow-hidden relative">
+              <div className="relative h-48 w-full overflow-hidden bg-brand-green-100">
                 <img
-                  alt={service.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt={service.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   src={service.image}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-green-950/60 to-transparent" />
-                <div
-                  className={`absolute top-4 left-4 w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${service.iconTone}`}
-                >
-                  <span className="material-symbols-outlined text-2xl">
-                    {service.icon}
-                  </span>
-                </div>
               </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="font-headline-md text-lg font-semibold text-brand-green-900 mb-2 transition-colors group-hover:text-brand-green-600">
+              <div className="flex flex-grow flex-col p-6">
+                <h3 className="mb-2 font-headline-md text-lg font-semibold text-brand-green-900 transition-colors group-hover:text-brand-green-600">
                   {service.title}
                 </h3>
-                <p className="font-body-md text-on-surface-variant text-sm mb-6 flex-grow">
-                  {service.description}
+                <p className="flex-grow font-body-md text-sm text-on-surface-variant">
+                  {service.shortDescription}
                 </p>
-                <a
-                  className="text-brand-green-700 font-label-bold hover:text-brand-gold-500 transition-colors inline-flex items-center gap-1 mt-auto"
-                  href="#quote"
-                >
-                  Learn More{' '}
-                  <span className="material-symbols-outlined text-sm">
-                    arrow_right_alt
-                  </span>
-                </a>
               </div>
             </div>
           ))}

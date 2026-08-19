@@ -130,7 +130,7 @@ export function Hero() {
         }
       }
 
-      wrap.style.transform = `translate3d(${dx * 10}px, ${dy * 6}px, 0) scale(1.04)`
+      wrap.style.transform = `translate3d(${dx * 10}px, ${dy * 4}px, 0) scale3d(1.03, 1, 1)`
 
       if (spotlightRef.current) {
         spotlightRef.current.style.transform = `translate3d(${px - SPOTLIGHT_SIZE / 2}px, ${py - SPOTLIGHT_SIZE / 2}px, 0) scale(${SPOTLIGHT_SCALE})`
@@ -165,16 +165,16 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[calc(100svh_-_4rem)] w-full overflow-hidden bg-brand-green-950 md:min-h-[calc(100svh_-_5rem)]"
+      className="relative isolate flex min-h-[calc(100svh_-_4rem)] w-full flex-col overflow-hidden bg-brand-green-950 md:min-h-[calc(100svh_-_5rem)]"
       id="home"
     >
       <div
         ref={videoWrapRef}
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden md:-inset-y-[2%] md:will-change-transform"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden md:will-change-transform"
       >
         <video
           ref={videoRef}
-          className="h-full w-full object-cover object-center md:absolute md:right-[-12%] md:top-0 md:w-auto md:max-w-none"
+          className="h-full w-full object-cover object-[center_top]"
           src={
             interactive
               ? '/videos/courier-hero-scrub.mp4'
@@ -188,16 +188,13 @@ export function Hero() {
         />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-brand-green-950/30 via-brand-green-950/60 via-45% to-brand-green-950/95 md:bg-gradient-to-r md:from-brand-green-950 md:from-20% md:via-brand-green-950/45 md:via-50% md:to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-brand-green-950/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-brand-green-950/20 via-transparent via-45% to-brand-green-950/55 md:bg-gradient-to-r md:from-brand-green-950/70 md:via-brand-green-950/20 md:via-40% md:to-transparent" />
 
-      {/* Cursor spotlight: fixed-size layers moved with transforms only, so the
-          browser composites them instead of repainting each frame. */}
       {interactive && (
         <>
           <div
             ref={spotlightRef}
-            className="pointer-events-none absolute left-0 top-0 z-[2] h-[800px] w-[800px] will-change-transform"
+            className="pointer-events-none absolute left-0 top-0 z-[2] hidden h-[800px] w-[800px] will-change-transform md:block"
             style={{
               transform: `translate3d(calc(62vw - ${SPOTLIGHT_SIZE / 2}px), calc(50vh - ${SPOTLIGHT_SIZE / 2}px), 0) scale(${SPOTLIGHT_SCALE})`,
               background:
@@ -206,7 +203,7 @@ export function Hero() {
           />
           <div
             ref={glowRef}
-            className="pointer-events-none absolute left-0 top-0 z-[3] h-[520px] w-[520px] will-change-transform"
+            className="pointer-events-none absolute left-0 top-0 z-[3] hidden h-[520px] w-[520px] will-change-transform md:block"
             style={{
               transform: `translate3d(calc(62vw - ${GLOW_SIZE / 2}px), calc(50vh - ${GLOW_SIZE / 2}px), 0)`,
               background:
@@ -216,10 +213,10 @@ export function Hero() {
         </>
       )}
 
-      <RevealOnScroll className="relative z-10 mx-auto flex w-full max-w-container-max flex-col justify-end px-margin-mobile pb-12 pt-12 md:justify-center md:px-margin-desktop md:pb-20 md:pt-24">
+      <RevealOnScroll className="relative z-10 mx-auto flex w-full max-w-container-max flex-1 flex-col justify-end px-margin-mobile pt-10 md:justify-center md:px-margin-desktop md:pt-8">
         <div
           ref={cardRef}
-          className="max-w-xl origin-left md:will-change-transform"
+          className="max-w-xl origin-left pb-8 md:pb-10 md:will-change-transform"
         >
           <span className="inline-flex items-center gap-2 self-start rounded-full border border-brand-gold-300/40 bg-brand-green-950/55 px-3 py-1.5 font-label-bold text-[11px] uppercase tracking-[0.16em] text-brand-gold-200 backdrop-blur-md sm:px-4 sm:text-xs sm:tracking-[0.18em]">
             <span className="h-2 w-2 rounded-full bg-brand-gold-300 animate-glow-pulse" />
@@ -234,9 +231,10 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="mt-4 max-w-xl font-body-lg text-base text-brand-green-100 md:mt-5 md:text-body-lg">
-            Documents, parcels and express shipments moving out of Sri Lanka on
-            DHL, Aramex, UPS and SkyNet — with one team watching every handover.
+          <p className="mt-4 max-w-md font-body-lg text-base text-brand-green-100 md:mt-5 md:max-w-lg md:text-body-lg">
+            Documents, parcels and express shipments moving out of Sri Lanka
+            on DHL, Aramex, UPS and SkyNet with one team watching every
+            handover.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4 md:mt-8">
@@ -258,32 +256,12 @@ export function Hero() {
             </a>
           </div>
         </div>
-
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-white/10 pt-6 md:mt-14 md:grid-cols-4 md:gap-6 md:pt-8">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex items-center gap-2.5 md:gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gold-300/15 text-brand-gold-200 backdrop-blur-sm md:h-11 md:w-11">
-                <span className="material-symbols-outlined text-xl md:text-2xl">
-                  {stat.icon}
-                </span>
-              </span>
-              <div className="min-w-0">
-                <p className="font-display-lg text-lg font-bold text-white md:text-xl">
-                  {stat.value}
-                </p>
-                <p className="text-xs text-brand-green-200 md:text-sm">
-                  {stat.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
       </RevealOnScroll>
 
       {interactive && (
         <div
           ref={hintRef}
-          className="pointer-events-none absolute bottom-6 right-6 z-10 hidden items-center gap-2 rounded-full border border-white/15 bg-brand-green-950/60 px-4 py-2 text-xs font-label-bold text-brand-green-100 backdrop-blur-md transition-opacity duration-500 md:inline-flex"
+          className="pointer-events-none absolute right-6 top-28 z-10 hidden items-center gap-2 rounded-full border border-white/15 bg-brand-green-950/60 px-4 py-2 text-xs font-label-bold text-brand-green-100 backdrop-blur-md transition-opacity duration-500 md:inline-flex"
         >
           <span className="material-symbols-outlined text-base text-brand-gold-300">
             mouse
@@ -291,6 +269,28 @@ export function Hero() {
           Move your cursor to guide the courier
         </div>
       )}
+
+      <div className="relative z-10 border-t border-white/10 bg-brand-green-950/25 backdrop-blur-[2px]">
+        <div className="mx-auto grid max-w-container-max grid-cols-2 gap-x-4 gap-y-5 px-margin-mobile py-6 md:grid-cols-4 md:gap-6 md:px-margin-desktop md:py-7">
+          {stats.map((stat) => (
+            <div key={stat.label} className="flex items-center gap-2.5 md:gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gold-300/15 text-brand-gold-200 md:h-11 md:w-11">
+                <span className="material-symbols-outlined text-xl md:text-2xl">
+                  {stat.icon}
+                </span>
+              </span>
+              <div className="min-w-0">
+                <p className="font-display-lg text-lg font-bold text-white drop-shadow-[0_4px_12px_rgba(2,23,13,0.7)] md:text-xl">
+                  {stat.value}
+                </p>
+                <p className="text-xs text-brand-green-100 drop-shadow-[0_4px_12px_rgba(2,23,13,0.7)] md:text-sm">
+                  {stat.label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
