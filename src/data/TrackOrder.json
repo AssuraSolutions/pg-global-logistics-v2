@@ -1,0 +1,55 @@
+[
+  {
+    "Text": "Select Delivery Type",
+    "Value": 0,
+    "subTypes": [
+      {
+        "partner": "Select Partner",
+        "url": "",
+        "Suffix": ""
+      }
+    ]
+  },
+  {
+    "Text": "Local Delivery",
+    "Value": 1,
+    "subTypes": [
+      {
+        "partner": "Select Partner",
+        "url": "",
+        "Suffix": ""
+      }
+    ]
+  },
+  {
+    "Text": "International Delivery",
+    "Value": 2,
+    "subTypes": [
+      {
+        "partner": "Select Partner",
+        "url": "",
+        "Suffix": ""
+      },
+      {
+        "partner": "DHL",
+        "url": "https://www.dhl.com/en/express/tracking.html?AWB=",
+        "Suffix": "&brand=DHL"
+      },
+      {
+        "partner": "Aramex",
+        "url": "https://www.aramex.com/track/results?mode=0&ShipmentNumber=",
+        "Suffix": ""
+      },
+      {
+        "partner": "UPS",
+        "url": "https://www.ups.com/track?tracknum=",
+        "Suffix": ""
+      },
+      {
+        "partner": "SkyNet",
+        "url": "https://www.skynet.net/tracking_public?tn=",
+        "Suffix": ""
+      }
+    ]
+  }
+]
