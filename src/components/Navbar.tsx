@@ -5,6 +5,7 @@ const navLinks = [
   { href: '#services', label: 'Services' },
   { href: '#about', label: 'About Us' },
   { href: '#locate', label: 'Locate Us' },
+  { href: '#gallery', label: 'Gallery' },
 ]
 
 export function Navbar() {

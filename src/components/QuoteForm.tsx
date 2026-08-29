@@ -76,7 +76,7 @@ const selectChevron =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23424843' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")"
 const errorClass = 'border-red-400 focus:ring-red-300'
 
-const QUOTE_EMAIL = 'info@pglanka.com'
+const QUOTE_EMAIL = 'thishanthan03@gmail.com'
 
 function isEmailValid(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
@@ -86,35 +86,38 @@ function labelFor(options: readonly { value: string; label: string }[], value: s
   return options.find((option) => option.value === value)?.label ?? value
 }
 
-function buildMailto(form: QuoteFormState, agreeToPromotions: boolean) {
+function buildPayload(form: QuoteFormState, agreeToPromotions: boolean) {
   const requestLabel = labelFor(requestTypes, form.requestType)
-  const lines = [
-    `Name: ${form.name.trim()}`,
-    `Email: ${form.email.trim()}`,
-    `WhatsApp: ${form.phoneNumber}`,
-    `Request Type: ${requestLabel}`,
-  ]
+  const delivery = deliveryTypes.find((option) => option.value === form.deliveryType)
 
-  if (form.requestType === 'deliveryRequest') {
-    const delivery = deliveryTypes.find((option) => option.value === form.deliveryType)
-    lines.push(`Purpose: ${labelFor(purposes, form.purpose)}`)
-    lines.push(
-      `Delivery Type: ${delivery ? `${delivery.label} ${delivery.deliveryTime}`.trim() : form.deliveryType}`,
-    )
-    lines.push(`Promotional offers: ${agreeToPromotions ? 'Yes' : 'No'}`)
+  return {
+    _subject: `Quote request — ${requestLabel} — ${form.name.trim()}`,
+    _template: 'table',
+    _captcha: 'false',
+    _replyto: form.email.trim(),
+    Name: form.name.trim(),
+    Email: form.email.trim(),
+    WhatsApp: form.phoneNumber,
+    'Request Type': requestLabel,
+    Purpose:
+      form.requestType === 'deliveryRequest'
+        ? labelFor(purposes, form.purpose)
+        : '',
+    'Delivery Type':
+      form.requestType === 'deliveryRequest' && delivery
+        ? `${delivery.label} ${delivery.deliveryTime}`.trim()
+        : '',
+    'Promotional offers':
+      form.requestType === 'deliveryRequest'
+        ? agreeToPromotions
+          ? 'Yes'
+          : 'No'
+        : '',
+    Partner: form.requestType === 'complaint' ? form.partner : '',
+    'Tracking Number':
+      form.requestType === 'complaint' ? form.trackingNumber.trim() : '',
+    Message: form.message.trim(),
   }
-
-  if (form.requestType === 'complaint') {
-    lines.push(`Partner: ${form.partner}`)
-    lines.push(`Tracking Number: ${form.trackingNumber.trim()}`)
-  }
-
-  lines.push('', 'Message:', form.message.trim())
-
-  const subject = `Quote request — ${requestLabel} — ${form.name.trim()}`
-  const body = lines.join('\n')
-
-  return `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 }
 
 function FieldError({ message }: { message?: string }) {
@@ -127,6 +130,8 @@ export function QuoteForm() {
   const [errors, setErrors] = useState<QuoteErrors>({})
   const [agreeToPromotions, setAgreeToPromotions] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   useEffect(() => {
     const applyRequestType = (type: string) => {
@@ -134,6 +139,7 @@ export function QuoteForm() {
         return
       }
       setSubmitted(false)
+      setSubmitError('')
       setForm((prev) => ({
         ...prev,
         requestType: type,
@@ -158,6 +164,7 @@ export function QuoteForm() {
     (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       const value = event.target.value
       setSubmitted(false)
+      setSubmitError('')
       setForm((prev) => {
         if (field === 'requestType') {
           return {
@@ -207,14 +214,46 @@ export function QuoteForm() {
     return Object.keys(next).length === 0
   }
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    if (!validate()) return
+    if (!validate() || sending) return
 
-    window.location.href = buildMailto(form, agreeToPromotions)
-    setSubmitted(true)
-    setForm(initialState)
-    setAgreeToPromotions(false)
+    setSending(true)
+    setSubmitError('')
+    setSubmitted(false)
+
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${QUOTE_EMAIL}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(buildPayload(form, agreeToPromotions)),
+        },
+      )
+
+      if (!response.ok) {
+        throw new Error(`Request failed (${response.status})`)
+      }
+
+      const result = (await response.json()) as { success?: string | boolean }
+      if (result.success === 'false' || result.success === false) {
+        throw new Error('Form service rejected the message')
+      }
+
+      setSubmitted(true)
+      setForm(initialState)
+      setAgreeToPromotions(false)
+    } catch {
+      setSubmitError(
+        'The message could not be sent. Check your connection and try again. If this is the first time, confirm the activation email in the inbox, then submit once more.',
+      )
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -443,17 +482,24 @@ export function QuoteForm() {
 
           {submitted && (
             <p className="rounded-xl bg-brand-green-50 px-4 py-3 text-sm text-brand-green-800">
-              Thank you. Your email app should open with the quote details for
-              info@pglanka.com. Send that message to complete your request.
+              Thank you. Your message has been sent to {QUOTE_EMAIL}. We will
+              contact you shortly.
+            </p>
+          )}
+
+          {submitError && (
+            <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+              {submitError}
             </p>
           )}
 
           <div className="flex justify-end">
             <button
-              className="w-full rounded-xl bg-brand-gold-300 px-8 py-4 font-label-bold text-brand-gold-700 shadow-lg shadow-brand-gold-300/20 transition-colors hover:bg-brand-green-700 hover:text-white active:scale-95 md:w-auto"
+              className="w-full rounded-xl bg-brand-gold-300 px-8 py-4 font-label-bold text-brand-gold-700 shadow-lg shadow-brand-gold-300/20 transition-colors hover:bg-brand-green-700 hover:text-white active:scale-95 disabled:pointer-events-none disabled:opacity-60 md:w-auto"
               type="submit"
+              disabled={sending}
             >
-              Send Message
+              {sending ? 'Sending…' : 'Send Message'}
             </button>
           </div>
         </form>

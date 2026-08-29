@@ -3,6 +3,7 @@ const quickLinks = [
   { href: '#services', label: 'Services' },
   { href: '#locate', label: 'Locate Us' },
   { href: '#about', label: 'About Us' },
+  { href: '#gallery', label: 'Gallery' },
 ]
 
 const headingClass = 'mb-5 font-semibold text-white'
@@ -20,12 +21,15 @@ export function Footer() {
     <footer className="bg-brand-green-950 text-white">
       <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col gap-6 border-b border-white/15 py-10 sm:flex-row sm:items-center sm:justify-between">
-          <a href="#home" className="inline-flex shrink-0">
+          <a href="#home" className="inline-flex shrink-0 items-center gap-3">
             <img
               alt="PGGL — passing globally"
               className="h-14 w-auto mix-blend-screen md:h-16"
               src="/logo.png"
             />
+            <span className="font-display-lg text-base font-bold text-white md:text-lg">
+              PG Global Logistics Pvt Ltd
+            </span>
           </a>
           <div className="flex flex-col gap-1 text-sm text-white sm:items-end">
             <a className={linkClass} href="tel:+94117207236">
@@ -76,7 +80,7 @@ export function Footer() {
               <p>
                 Chavakachcheri
                 <br />
-                23, Kandy Road,
+                No 41, Kachchai Road,
                 <br />
                 Chavakachcheri, Sri Lanka.
               </p>
