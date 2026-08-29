@@ -3,7 +3,7 @@ import { RevealOnScroll } from './RevealOnScroll'
 const locations = [
   {
     name: 'Wellawatta',
-    addressLines: ['49, ST Lawrence Road, Colombo - 06, SriLanka.'],
+    addressLines: ['49, ST Lawrence Road, Colombo - 06, Sri Lanka.'],
     mapQuery: '49 ST Lawrence Road, Colombo 06, Sri Lanka',
     phone: '+94 117 207 236',
     phoneHref: 'tel:+94117207236',
@@ -11,8 +11,8 @@ const locations = [
   },
   {
     name: 'Chavakachcheri',
-    addressLines: ['23, Kandy Road, Chavakachcheri, SriLanka.'],
-    mapQuery: '23 Kandy Road, Chavakachcheri, Sri Lanka',
+    addressLines: ['No 41, Kachchai Road, Chavakachcheri, Sri Lanka.'],
+    mapQuery: 'No 41, Kachchai Road, Chavakachcheri, Sri Lanka',
     phone: '021 720 0616',
     phoneHref: 'tel:+94217200616',
     email: 'info@pglanka.com',
