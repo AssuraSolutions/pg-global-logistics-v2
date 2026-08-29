@@ -96,11 +96,7 @@ export function Gallery() {
               key={photo.src}
               type="button"
               onClick={() => setActive(index)}
-              className={`group relative overflow-hidden rounded-2xl bg-brand-green-100 ${
-                photo.featured
-                  ? 'col-span-2 row-span-2 min-h-[16rem] md:min-h-[28rem]'
-                  : 'aspect-square'
-              }`}
+              className="group relative aspect-square overflow-hidden rounded-2xl bg-brand-green-100"
             >
               <img
                 src={photo.src}
