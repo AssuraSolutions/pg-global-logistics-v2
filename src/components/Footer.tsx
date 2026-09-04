@@ -116,12 +116,12 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 py-6 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Copyright © 2026 All Rights Reserved | Web Design By{' '}
+            Copyright © 2026 All Rights Reserved | Digitally powered by {' '}
             <a
-              href="mailto:thishanthan03@gmail.com?cc=ahamedrizlan2002@gmail.com,geeviniyvasu@gmail.com&subject=New%20Project%20Inquiry&body=Hello%20Assura%20Solutions,"
+              href="mailto:pactocode@gmail.com?cc=thishanthan03@gmail.com,ahamedrizlan2002@gmail.com,geeviniyvasu@gmail.com&subject=New%20Project%20Inquiry&body=Hello%20PactoCode,"
               className="text-white underline underline-offset-2 hover:text-brand-gold-300"
             >
-              Assura Solutions
+              PactoCode
             </a>
           </p>
         </div>
