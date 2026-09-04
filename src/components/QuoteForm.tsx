@@ -53,13 +53,17 @@ const purposes = [
 
 const deliveryTypes = [
   { value: '', label: 'Select Delivery Type', deliveryTime: '' },
-  { value: 'local', label: 'Local Delivery', deliveryTime: '(1–2 Days)' },
+  { value: 'domestic', label: 'Domestic', deliveryTime: '(1–2 working days)' },
   {
-    value: 'international',
-    label: 'International Delivery',
-    deliveryTime: '(3–7 Days)',
+    value: 'internationalExpress',
+    label: 'International Express',
+    deliveryTime: '(3–4 working days)',
   },
-  { value: 'express', label: 'Express', deliveryTime: '(1–3 Days)' },
+  {
+    value: 'internationalOrdinary',
+    label: 'International Ordinary',
+    deliveryTime: '(10–12 working days)',
+  },
 ]
 
 const partners = [
@@ -76,7 +80,7 @@ const selectChevron =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23424843' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")"
 const errorClass = 'border-red-400 focus:ring-red-300'
 
-const QUOTE_EMAIL = 'thishanthan03@gmail.com'
+const QUOTE_EMAIL = 'info@pglanka.com'
 
 function isEmailValid(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
